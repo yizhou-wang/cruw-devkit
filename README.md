@@ -1,13 +1,22 @@
 # CRUW devkit
 
-`cruw-devkit` is a useful toolkit for the CRUW dataset including sensor configurations, sensor calibration parameters, 
+Package `cruw-devkit` is a useful toolkit for the CRUW dataset including sensor configurations, sensor calibration parameters, 
 the mapping between RF image coordinates (in pixel) and radar's bird's-eye view coordinates (in meters), metadata, 
 visualization tools, etc. More components are still in the developing phase. 
+
+Please refer to our [dataset website](https://www.cruwdataset.org) for more information about the CRUW Dataset.
 
 This repository is maintained by [Yizhou Wang](http://yizhouwang.net/). Free to raise issues and help improve this 
 repository.
 
-### Acknowledgment for CRUW dataset
+## News
+
+- We are organizing the [ROD2021 Challenge](https://www.cruwdataset.org/rod2021) at ACM ICMR 2021. Welcome your participation!
+- The code of the RODNet paper (WACV 2021) is released. 
+  [[Paper]](https://openaccess.thecvf.com/content/WACV2021/html/Wang_RODNet_Radar_Object_Detection_Using_Cross-Modal_Supervision_WACV_2021_paper.html)
+  [[Code]](https://github.com/yizhou-wang/RODNet)
+
+## Acknowledgment for CRUW dataset
 
 **ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY**
 
@@ -32,9 +41,11 @@ pip install -e .
 ## Tutorials
 
 The tutorials for the usages of `cruw-devkit` package are listed in the tutorial folder.
-- For ROD2021 Challenge: [Jupyter Notebook](https://github.com/yizhou-wang/cruw-devkit/blob/master/tutorials/cruw_devkit_tutorial_rod2021.ipynb)
+- For ROD2021 Challenge: [cruw_devkit_tutorial_rod2021.ipynb](https://github.com/yizhou-wang/cruw-devkit/blob/master/tutorials/cruw_devkit_tutorial_rod2021.ipynb)
 
-## Annotation Format for ROD2021 Dataset
+## Annotation Format
+
+### ROD2021 Dataset
 
 Each training sequence (40 training sequences in total) has an `txt` object annotation file. 
 The annotation format for the training set (each line in the `txt` files):
@@ -43,7 +54,7 @@ The annotation format for the training set (each line in the `txt` files):
   ...
 ```
 
-## Annotation Format for CRUW Dataset
+### General CRUW Dataset
 
 For each sequence, a `json` file is provided as annotations:
 ```
