@@ -1,0 +1,13 @@
+{
+  "n_classes": 3,
+  "classes": [
+    "pedestrian",
+    "cyclist",
+    "car"
+  ],
+  "sizes": {
+    "pedestrian": 0.5,
+    "cyclist": 1.0,
+    "car": 3.0
+  }
+}

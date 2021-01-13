@@ -1,0 +1,37 @@
+{
+  "dataset": "ROD2021",
+  "camera_cfg": {
+    "image_width": 1440,
+    "image_height": 864,
+    "frame_rate": 30,
+    "image_folder": "IMAGES_0",
+    "ext": "jpg"
+  },
+  "radar_cfg": {
+    "ramap_rsize": 128,
+    "ramap_asize": 128,
+    "frame_rate": 30,
+    "crop_num": 3,
+    "n_chirps": 255,
+    "chirp_ids": [0, 64, 128, 192],
+    "sample_freq": 4e6,
+    "sweep_slope": 21.0017e12,
+    "data_type": "ROD2021",
+    "chirp_folder": "RADAR_RA_H",
+    "ext": "npy",
+    "ramap_rsize_label": 122,
+    "ramap_asize_label": 121,
+    "ra_min_label": -60,
+    "ra_max_label": 60,
+    "rr_min": 1.0,
+    "rr_max": 25.0,
+    "ra_min": -90,
+    "ra_max": 90
+  },
+  "calib_cfg": {
+    "cam_calib_paths": {},
+    "t_cl2cr": [0.35, 0.0, 0.0],
+    "t_cl2rh": [0.11, -0.05, 0.06],
+    "t_cl2rv": [0.21, -0.05, 0.06]
+  }
+}
