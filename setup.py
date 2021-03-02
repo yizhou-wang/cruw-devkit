@@ -31,7 +31,7 @@ if __name__ == '__main__':
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
         ],
-        packages=find_packages(include=["cruw.*"]),
+        packages=find_packages(include=["cruw", "cruw.*"]),
         # package_dir={'': 'cruw'},
         package_data={'': ['*.json']},
         python_requires='>=3.6',
