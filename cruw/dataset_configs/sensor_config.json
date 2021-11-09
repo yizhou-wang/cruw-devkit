@@ -1,4 +1,5 @@
 {
+  "dataset": "CRUW",
   "camera_cfg": {
     "image_width": 1440,
     "image_height": 864,
