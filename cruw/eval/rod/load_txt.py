@@ -1,5 +1,7 @@
 import math
 
+from cruw.mapping.object_types import get_class_id
+
 
 def read_gt_txt(txt_path, n_frame, dataset):
     n_class = dataset.object_cfg.n_class
@@ -92,5 +94,50 @@ def read_sub_txt(txt_path, n_frame, dataset):
             obj_dict_gt['id'] = id
             dts[frameid, class_id].append(obj_dict_gt)
             id += 1
+
+    return dts
+
+
+def read_rodnet_res(filename, n_frame, dataset):
+    n_class = dataset.object_cfg.n_class
+    classes = dataset.object_cfg.classes
+    rng_grid = dataset.range_grid
+    agl_grid = dataset.angle_grid
+
+    with open(filename, 'r') as df:
+        data = df.readlines()
+    if len(data) == 0:
+        return None
+
+    dts = {(i, j): [] for i in range(n_frame) for j in range(n_class)}
+
+    for id, line in enumerate(data):
+        if line is not None:
+            line = line.rstrip().split()
+            frameid, class_str, ridx, aidx, conf = line
+            frameid = int(frameid)
+            classid = get_class_id(class_str, classes)
+            ridx = int(ridx)
+            aidx = int(aidx)
+            conf = float(conf)
+            if conf > 1:
+                conf = 1
+            rng = rng_grid[ridx]
+            agl = agl_grid[aidx]
+            if rng > 25 or rng < 1:
+                continue
+            if agl > math.radians(60) or agl < math.radians(-60):
+                continue
+            obj_dict = dict(
+                id=id + 1,
+                frame_id=frameid,
+                range=rng,
+                angle=agl,
+                range_id=ridx,
+                angle_id=aidx,
+                class_id=classid,
+                score=conf
+            )
+            dts[frameid, classid].append(obj_dict)
 
     return dts

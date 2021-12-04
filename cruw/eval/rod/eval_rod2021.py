@@ -19,7 +19,6 @@ def evaluate_rod2021(submit_dir, truth_dir, dataset):
     # evaluation start
     evalImgs_all = []
     n_frames_all = 0
-    ols_list = []
 
     for seqid, (sub_name, gt_name) in enumerate(zip(sub_names, gt_names)):
         gt_path = os.path.join(truth_dir, gt_name)
@@ -33,12 +32,6 @@ def evaluate_rod2021(submit_dir, truth_dir, dataset):
         olss_all = {(imgId, catId): compute_ols_dts_gts(gt_dets, sub_dets, imgId, catId, dataset) \
                     for imgId in range(n_frame)
                     for catId in range(3)}
-
-        for olss in list(olss_all.values()):
-            if len(olss) > 0:
-                olss_max_gt = np.amax(olss, axis=0)
-                cur_olss = list(np.ravel(np.squeeze(olss_max_gt)))
-                ols_list.extend(cur_olss)
 
         evalImgs = [evaluate_img(gt_dets, sub_dets, imgId, catId, olss_all, olsThrs, recThrs, dataset)
                     for imgId in range(n_frame)
