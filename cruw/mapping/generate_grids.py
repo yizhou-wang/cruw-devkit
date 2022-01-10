@@ -43,7 +43,9 @@ def confmap2ra(radar_configs, name, radordeg='rad'):
 def labelmap2ra(radar_configs, name, radordeg='rad'):
     """
     Map label map to range(m) and angle(deg): uniformed angle
+    :param radar_configs: radar config dict
     :param name: 'range' for range mapping, 'angle' for angle mapping
+    :param radordeg: return in radius or degree
     :return: mapping grids
     """
     # TODO: add more args for different network settings
@@ -73,6 +75,20 @@ def labelmap2ra(radar_configs, name, radordeg='rad'):
         else:
             raise TypeError
         return agl_grid
+
+
+def get_xzgrid(xz_dim, zrange):
+    """
+    BEV grids when transfer RF images to cart coordinates
+    :param xz_dim: dimension of output BEV image
+    :param zrange: largest range value in z axis
+    """
+    origin = np.array([0, int(xz_dim[1] / 2)])
+    zline, zreso = np.linspace(0, zrange, num=xz_dim[0], endpoint=False, retstep=True)
+    xmax = zreso * (origin[1] + 1)
+    xline = np.linspace(0, xmax, num=origin[1] + 1, endpoint=False)
+    xline = np.concatenate([np.flip(-xline[1:]), xline])
+    return xline, zline
 
 
 if __name__ == '__main__':
