@@ -64,10 +64,12 @@ def rf2rfcart(rfim, range_grid, angle_grid, dim=(128, 101), zrange=30.0, magnitu
     :param magnitude_only: convert magnitude map only
     """
     xline, zline = get_xzgrid(dim, zrange)
-    rf_cart = np.zeros([dim[0], dim[1], 2])
 
     if magnitude_only:
+        rf_cart = np.zeros([dim[0], dim[1], 1])
         rfim = np.sqrt(rfim[:, :, 0] ** 2 + rfim[:, :, 1] ** 2)
+    else:
+        rf_cart = np.zeros([dim[0], dim[1], 2])
 
     for zi in range(dim[0]):
         for xi in range(dim[1]):
@@ -77,7 +79,7 @@ def rf2rfcart(rfim, range_grid, angle_grid, dim=(128, 101), zrange=30.0, magnitu
             rid_inter, aid_inter = ra2idx_interpolate(rng, agl, range_grid, angle_grid)
             rf_cart[zi, xi] = bilinear_interpolate(rfim, aid_inter, rid_inter)
 
-    return rf_cart, (xline, zline)
+    return np.squeeze(rf_cart), (xline, zline)
 
 
 if __name__ == '__main__':
