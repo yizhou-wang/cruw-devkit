@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def magnitude(chirp, radar_data_type):
@@ -48,3 +49,13 @@ def draw_centers(ax, chirp, dts, colors, texts=None, chirp_type='RISEP'):
         ax.scatter(dts[dt_id][1], dts[dt_id][0], s=100, c=color, edgecolors='white')
         if texts is not None:
             ax.text(dts[dt_id][1] + 2, dts[dt_id][0] + 2, '%s' % texts[dt_id], c='white')
+
+
+def show_rf_cart(chirp_cart, xz_grid):
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+    ax.imshow(chirp_cart, vmin=0, vmax=1, origin='lower')
+    ax.set_xticks(np.arange(0, len(xz_grid[0]), 30), xz_grid[0][::30])
+    ax.set_yticks(np.arange(0, len(xz_grid[1]), 20), xz_grid[1][::20])
+    ax.set_xlabel('x(m)')
+    ax.set_ylabel('z(m)')
