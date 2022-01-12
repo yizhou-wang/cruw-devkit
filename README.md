@@ -41,7 +41,8 @@ pip install -e .
 ## Tutorials
 
 The tutorials for the usages of `cruw-devkit` package are listed in the tutorial folder.
-- For ROD2021 Challenge: [cruw_devkit_tutorial_rod2021.ipynb](https://github.com/yizhou-wang/cruw-devkit/blob/master/tutorials/cruw_devkit_tutorial_rod2021.ipynb)
+- For ROD2021 Challenge: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yizhou-wang/cruw-devkit/blob/master/tutorials/cruw_devkit_tutorial_rod2021.ipynb)
+
 
 ## Annotation Format
 
