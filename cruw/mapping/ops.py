@@ -1,5 +1,7 @@
 import numpy as np
 
+from cruw.mapping.coor_transform import pol2cart_ramap, cart2pol_ramap
+
 
 def find_nearest(array, value):
     """Find nearest value to 'value' in 'array'."""
@@ -37,6 +39,12 @@ def xz2idx_interpolate(x, z, x_grid, z_grid):
     zids = np.arange(z_grid.shape[0])
     x_id = np.interp(x, x_grid, xids)
     z_id = np.interp(z, z_grid, zids)
+    return x_id, z_id
+
+
+def ra2xzidx(rng, agl, xz_grid):
+    x, z = pol2cart_ramap(rng, agl)
+    x_id, z_id = xz2idx_interpolate(x, z, *xz_grid)
     return x_id, z_id
 
 

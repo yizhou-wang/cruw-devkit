@@ -2,7 +2,7 @@ import os
 import json
 
 from cruw.config_classes import SensorConfig, ObjectConfig
-from cruw.mapping import confmap2ra, labelmap2ra
+from cruw.mapping import confmap2ra, labelmap2ra, get_xzgrid
 
 
 class CRUW:
@@ -21,6 +21,8 @@ class CRUW:
         self.angle_grid = confmap2ra(self.sensor_cfg.radar_cfg, name='angle')
         self.range_grid_label = labelmap2ra(self.sensor_cfg.radar_cfg, name='range')
         self.angle_grid_label = labelmap2ra(self.sensor_cfg.radar_cfg, name='angle')
+
+        self.xz_grid = get_xzgrid(self.sensor_cfg.radar_cfg['xz_dim'], self.sensor_cfg.radar_cfg['z_max'])
 
     def __str__(self):
         print_log = '<CRUW Dataset Object>\n'

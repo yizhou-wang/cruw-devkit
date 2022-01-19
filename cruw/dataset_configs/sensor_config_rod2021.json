@@ -26,7 +26,9 @@
     "rr_min": 1.0,
     "rr_max": 25.0,
     "ra_min": -90,
-    "ra_max": 90
+    "ra_max": 90,
+    "xz_dim": [200, 151],
+    "z_max": 30.0
   },
   "calib_cfg": {
     "cam_calib_paths": {
