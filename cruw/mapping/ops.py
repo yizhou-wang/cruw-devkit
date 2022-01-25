@@ -17,6 +17,15 @@ def idx2ra(rng_id, agl_id, range_grid, angle_grid):
     return rng, agl
 
 
+def idx2ra_interpolate(rng_id, agl_id, range_grid, angle_grid):
+    """Mapping from ra indices to absolute range (m) and azimuth (rad)."""
+    rids = np.arange(range_grid.shape[0])
+    aids = np.arange(angle_grid.shape[0])
+    rng = np.interp(rng_id, rids, range_grid)
+    agl = np.interp(agl_id, aids, angle_grid)
+    return rng, agl
+
+
 def ra2idx(rng, agl, range_grid, angle_grid):
     """Mapping from absolute range (m) and azimuth (rad) to ra indices."""
     rng_id, _ = find_nearest(range_grid, rng)

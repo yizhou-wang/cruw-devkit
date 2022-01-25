@@ -47,3 +47,29 @@ def cart2pol_ramap(x, y):
     rho = (x * x + y * y) ** 0.5
     phi = np.arctan2(x, y)
     return rho, phi
+
+
+def radar2camera_xz(xz_mat, translations):
+    """
+    Translate BEV xz from radar to camera coord.
+    :param xz_mat: [n, 2]
+    :param translations: [tx, ty, tz]
+    :return: xz_mat [n, 2]
+    """
+    tx, ty, tz = translations
+    xz_mat[:, 0] += tx
+    xz_mat[:, 1] += tz
+    return xz_mat
+
+
+def camera2radar_xz(xz_mat, translations):
+    """
+    Translate BEV xz from camera to radar coord.
+    :param xz_mat: [n, 2]
+    :param translations: [tx, ty, tz]
+    :return: xz_mat [n, 2]
+    """
+    tx, ty, tz = translations
+    xz_mat[:, 0] -= tx
+    xz_mat[:, 1] -= tz
+    return xz_mat
