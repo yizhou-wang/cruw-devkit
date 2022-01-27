@@ -24,7 +24,9 @@ def evaluate_rod2021(submit_dir, truth_dir, dataset):
         gt_path = os.path.join(truth_dir, gt_name)
         sub_path = os.path.join(submit_dir, sub_name)
         data_path = os.path.join(dataset.data_root, 'sequences', 'test', gt_names[seqid][:-4])
-        n_frame = len(os.listdir(os.path.join(data_path, dataset.sensor_cfg.camera_cfg['image_folder'])))
+        # n_frame = len(os.listdir(os.path.join(data_path, dataset.sensor_cfg.camera_cfg['image_folder'])))
+        n_frame = int(len(os.listdir(os.path.join(data_path, dataset.sensor_cfg.radar_cfg['chirp_folder']))) / len(
+            dataset.sensor_cfg.radar_cfg['chirp_ids']))
 
         gt_dets = read_gt_txt(gt_path, n_frame, dataset)
         sub_dets = read_sub_txt(sub_path, n_frame, dataset)
