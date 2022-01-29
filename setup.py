@@ -18,7 +18,7 @@ def get_requirements(filename='requirements.txt'):
 if __name__ == '__main__':
     setup(
         name='cruw-devkit',
-        version='1.0.0',
+        version='1.1',
         description='The official devkit of the CRUW dataset',
         long_description=readme(),
         long_description_content_type='text/markdown',
