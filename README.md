@@ -1,8 +1,7 @@
 # CRUW devkit
 
 Package `cruw-devkit` is a useful toolkit for the CRUW dataset including sensor configurations, sensor calibration parameters, 
-the mapping between RF image coordinates (in pixel) and radar's bird's-eye view coordinates (in meters), metadata, 
-visualization tools, etc. More components are still in the developing phase. 
+the mapping functions, metadata, visualization tools, etc. More components are still in the developing phase. 
 
 Please refer to our [dataset website](https://www.cruwdataset.org) for more information about the CRUW Dataset.
 
