@@ -9,13 +9,6 @@ Please refer to our [dataset website](https://www.cruwdataset.org) for more info
 This repository is maintained by [Yizhou Wang](http://yizhouwang.net/). Free to raise issues and help improve this 
 repository.
 
-## News
-
-- We are organizing the [ROD2021 Challenge](https://www.cruwdataset.org/rod2021) at ACM ICMR 2021. Welcome your participation!
-- The code of the RODNet paper (WACV 2021) is released. 
-  [[Paper]](https://openaccess.thecvf.com/content/WACV2021/html/Wang_RODNet_Radar_Object_Detection_Using_Cross-Modal_Supervision_WACV_2021_paper.html)
-  [[Code]](https://github.com/yizhou-wang/RODNet)
-
 ## Acknowledgment for CRUW dataset
 
 **ACADEMIC OR NON-PROFIT ORGANIZATION NONCOMMERCIAL RESEARCH USE ONLY**
@@ -25,6 +18,35 @@ University of Washington. It was partially supported by CMMB Vision – UWECE Ce
 Connected Vehicles. We would also like to thank the colleagues and students in IPL for their help and assistance on the 
 dataset collection, processing, and annotation works.
 
+## News
+- [2022/01/01] ROD2021 evaluation server is reopened. Welcome to submit your results! [[Evaluation Server]](https://codalab.lisn.upsaclay.fr/competitions/1063)
+- [2021/11/17] ROD2021 Challenge Session @ ACM ICMR 2021. [[Challenge Summary Paper]](https://dl.acm.org/doi/abs/10.1145/3460426.3463658)
+- [2021/06/20] Our work is presented in the Workshop on Autonomous Driving (WAD) at CVPR 2021. 
+  Code will be release soon. 
+  [[Paper]](https://openaccess.thecvf.com/content/CVPR2021W/WAD/html/Wang_Rethinking_of_Radars_Role_A_Camera-Radar_Dataset_and_Systematic_Annotator_CVPRW_2021_paper.html)
+  [[Spotlight]](https://youtu.be/gLu-lVM3X7s)
+  [[Poster]](http://yizhouwang.net/documents/wad_cvpr2021_poster.pdf)
+  [[WAD Full Video]](https://youtu.be/eOL_rCK59ZI)
+- [2021/02/06] The journal version of the RODNet paper is accepted by IEEE J-STSP. 
+  [[Paper]](https://ieeexplore.ieee.org/document/9353210)
+  [[ArXiv]](https://arxiv.org/abs/2102.05150)
+  [[Code]](https://github.com/yizhou-wang/RODNet)
+  [[Demo]](https://youtu.be/09HaDySa29I)
+- [2020/12/20] We are organizing the [ROD2021 Challenge](https://www.cruwdataset.org/rod2021) at ACM ICMR 2021. Welcome your participation!
+- [2020/11/01] Our radar object detection paper (RODNet) is accepted by  WACV 2021. 
+  [[Paper]](https://openaccess.thecvf.com/content/WACV2021/html/Wang_RODNet_Radar_Object_Detection_Using_Cross-Modal_Supervision_WACV_2021_paper.html)
+  [[Code]](https://github.com/yizhou-wang/RODNet)
+  [[Presentation]](https://youtu.be/UZbxI4o2-7g)
+  
+## Changelog
+
+- [2022/01/28] v1.1: add coordinate transform and other utils.
+- [2022/01/27] handle camera images unavailable issue for ROD2021 testing set.
+- [2022/01/25] add functions to transfer RF images/labels from polar to Cartesian coordinates.
+- [2021/12/03] add evaluation for RODNet format results.
+- [2021/11/09] add sensor config files.
+- [2021/11/01] add some utils functions for evaluation.
+- [2021/01/18] v1.0: stable version for ROD2021 Challenge.
 
 ## Installation
 
