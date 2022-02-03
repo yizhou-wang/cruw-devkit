@@ -39,6 +39,7 @@ dataset collection, processing, and annotation works.
   
 ## Changelog
 
+- [2022/02/02] add dataset script and fix installation bugs
 - [2022/01/28] v1.1: add coordinate transform and other utils.
 - [2022/01/27] handle camera images unavailable issue for ROD2021 testing set.
 - [2022/01/25] add functions to transfer RF images/labels from polar to Cartesian coordinates.
