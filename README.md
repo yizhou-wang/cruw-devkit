@@ -56,7 +56,8 @@ conda create -n cruw-devkit python=3.*
 Run setup tool for this devkit.
 ```
 conda activate cruw-devkit
-pip install -e .
+pip install .
+pip install -e .  # development mode
 ```
 
 ## Tutorials
