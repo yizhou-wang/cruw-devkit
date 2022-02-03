@@ -33,7 +33,7 @@ if __name__ == '__main__':
         ],
         packages=find_packages(include=["cruw", "cruw.*"]),
         # package_dir={'': 'cruw'},
-        package_data={'': ['*.json']},
+        package_data={'cruw': ['dataset_configs/*.json']},
         python_requires='>=3.6',
         install_requires=get_requirements(),
     )
