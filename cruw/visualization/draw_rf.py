@@ -29,6 +29,23 @@ def magnitude(chirp, radar_data_type):
     return chirp_abs
 
 
+def draw_rf_image(chirp_data, radar_data_type, save_path=None):
+    """
+    Visualize radar data of one chirp
+    :param chirp_data: (w x h x 2) or (2 x w x h)
+    :param radar_data_type: current available types include 'RI', 'RISEP', 'AP', 'APSEP'
+    :param save_path: save figure path
+    :return:
+    """
+    chirp_abs = magnitude(chirp_data, radar_data_type)
+    plt.imshow(chirp_abs, origin='lower')
+    plt.colorbar()
+    if save_path is None:
+        plt.show()
+    else:
+        plt.savefig(save_path)
+
+
 def draw_centers(ax, chirp, dts, colors, texts=None, chirp_type='RISEP'):
     """
     Draw object centers on RF image.
