@@ -19,8 +19,13 @@ class CRUW:
 
         self.range_grid = confmap2ra(self.sensor_cfg.radar_cfg, name='range')
         self.angle_grid = confmap2ra(self.sensor_cfg.radar_cfg, name='angle')
-        self.range_grid_label = labelmap2ra(self.sensor_cfg.radar_cfg, name='range')
-        self.angle_grid_label = labelmap2ra(self.sensor_cfg.radar_cfg, name='angle')
+        try:
+            self.range_grid_label = labelmap2ra(self.sensor_cfg.radar_cfg, name='range')
+            self.angle_grid_label = labelmap2ra(self.sensor_cfg.radar_cfg, name='angle')
+        except:
+            self.range_grid_label = None
+            self.angle_grid_label = None
+            print('not using range_grid_label and angle_grid_label.')
 
         self.xz_grid = get_xzgrid(self.sensor_cfg.radar_cfg['xz_dim'], self.sensor_cfg.radar_cfg['z_max'])
 
