@@ -67,8 +67,8 @@ def draw_centers(ax, chirp, dts, colors, texts=None, chirp_type='RISEP', normali
     if normalized:
         ax.imshow(chirp_abs, vmin=0, vmax=1, origin='lower')
     else:
-        ax.imshow(chirp_abs, origin='lower')
-        ax.colorbar()
+        ax_img = ax.imshow(chirp_abs, origin='lower')
+        plt.colorbar(ax_img, ax=ax)
     n_dts = len(dts)
     for dt_id in range(n_dts):
         color = np.array(colors[dt_id])
@@ -91,8 +91,8 @@ def show_rf_cart(chirp_cart, xz_grid, normalized=True):
     if normalized:
         ax.imshow(chirp_cart, vmin=0, vmax=1, origin='lower')
     else:
-        ax.imshow(chirp_cart, origin='lower')
-        ax.colorbar()
+        ax_img = ax.imshow(chirp_cart, origin='lower')
+        plt.colorbar(ax_img, ax=ax)
     ax.set_xticks(np.arange(0, len(xz_grid[0]), 30), xz_grid[0][::30])
     ax.set_yticks(np.arange(0, len(xz_grid[1]), 20), xz_grid[1][::20])
     ax.set_xlabel('x(m)')
