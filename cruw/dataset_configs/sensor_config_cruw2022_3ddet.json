@@ -35,7 +35,7 @@
     "z_max": 30.0
   },
   "calib_cfg": {
-    "cam_calib_paths": null,
+    "cam_calib_paths": {},
     "t_cl2cr": [
       0.60,
       0.00,
