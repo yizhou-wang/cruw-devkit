@@ -47,11 +47,17 @@ class CRUW:
         # check if config exists
         this_dir = os.path.dirname(os.path.abspath(__file__))
         cfg_path = os.path.join(this_dir, 'dataset_configs', '%s.json' % config_name)
-        assert os.path.exists(cfg_path), 'Configuration {} not found'.format(config_name)
+        if os.path.exists(cfg_path):
+            # load config file from dataset_configs folder
+            with open(cfg_path, 'r') as f:
+                data = json.load(f)
+        elif os.path.exists(config_name):
+            # load config file from an outside json file
+            with open(config_name, 'r') as f:
+                data = json.load(f)
+        else:
+            assert os.path.exists(cfg_path), 'Configuration {} not found'.format(config_name)
 
-        # load config file to Loc3DCamConfig
-        with open(cfg_path, 'r') as f:
-            data = json.load(f)
         cfg = SensorConfig.initialize(data)
         # cam_0_calib_yaml = os.path.join(self.data_root, 'calib', cfg.calib_cfg['cam_calib_name'], 'left.yaml')
         # cam_1_calib_yaml = os.path.join(self.data_root, 'calib', cfg.calib_cfg['cam_calib_name'], 'right.yaml')
