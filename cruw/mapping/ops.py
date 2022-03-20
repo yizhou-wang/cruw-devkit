@@ -57,7 +57,13 @@ def xz2raidx(x, z, range_grid, angle_grid):
     return rng_id, agl_id
 
 
-def ra2xzidx(rng, agl, xz_grid):
+def xz2raidx_interpolate(x, z, range_grid, angle_grid):
+    rng, agl = cart2pol_ramap(x, z)
+    rng_id, agl_id = ra2idx_interpolate(rng, agl, range_grid, angle_grid)
+    return rng_id, agl_id
+
+
+def ra2xzidx_interpolate(rng, agl, xz_grid):
     x, z = pol2cart_ramap(rng, agl)
     x_id, z_id = xz2idx_interpolate(x, z, *xz_grid)
     return x_id, z_id
