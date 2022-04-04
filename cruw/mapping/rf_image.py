@@ -3,6 +3,7 @@ import numpy as np
 import cruw
 from cruw.mapping.coor_transform import cart2pol_ramap
 from cruw.mapping.ops import ra2idx, ra2idx_interpolate, bilinear_interpolate
+from cruw.mapping.complex import ri2ap, ap2ri
 
 
 def rf2rfcart(rfim, range_grid, angle_grid, xz_grid, magnitude_only=True):
@@ -23,6 +24,7 @@ def rf2rfcart(rfim, range_grid, angle_grid, xz_grid, magnitude_only=True):
         rfim = np.sqrt(rfim[:, :, 0] ** 2 + rfim[:, :, 1] ** 2)
     else:
         rf_cart = np.zeros([dim[0], dim[1], 2])
+        rfim = ri2ap(rfim)
 
     for zi in range(dim[0]):
         for xi in range(dim[1]):
@@ -31,6 +33,9 @@ def rf2rfcart(rfim, range_grid, angle_grid, xz_grid, magnitude_only=True):
             # rid, aid = ra2idx(rng, agl, range_grid, angle_grid)
             rid_inter, aid_inter = ra2idx_interpolate(rng, agl, range_grid, angle_grid)
             rf_cart[zi, xi] = bilinear_interpolate(rfim, aid_inter, rid_inter)
+
+    if not magnitude_only:
+        rf_cart = ap2ri(rf_cart)
 
     return np.squeeze(rf_cart), (xline, zline)
 
