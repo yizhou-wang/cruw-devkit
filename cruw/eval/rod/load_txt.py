@@ -106,8 +106,6 @@ def read_rodnet_res(filename, n_frame, dataset):
 
     with open(filename, 'r') as df:
         data = df.readlines()
-    if len(data) == 0:
-        return None
 
     dts = {(i, j): [] for i in range(n_frame) for j in range(n_class)}
 
