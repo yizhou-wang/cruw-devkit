@@ -1,5 +1,6 @@
 import os
 import yaml
+import numpy as np
 
 from cruw.utils.parse_cam_calib import parse_cam_matrices
 
@@ -15,7 +16,7 @@ class SensorConfig:
         self.dataset = dataset
         self.camera_cfg = camera_cfg
         self.radar_cfg = radar_cfg
-        self.calib_cfg = calib_cfg
+        self.calib_cfg = self.get_ts(calib_cfg)
 
     def serialize(self) -> dict:
         return {
@@ -84,6 +85,26 @@ class SensorConfig:
                         self.calib_cfg['cam_calib'][date]['cam_1']['projection_matrix'] = P
                 else:
                     self.calib_cfg['cam_calib']['load_success'] = False
+
+    def get_ts(self, calib_dict):
+
+        calib_dict['t_cl2cr'] = np.array(calib_dict['t_cl2cr'])  # left camera to right camera
+        calib_dict['t_cl2rad'] = np.array(calib_dict['t_cl2rad'])  # left camera to radar
+        calib_dict['t_cl2lid'] = np.array(calib_dict['t_cl2lid'])  # left camera to lidar
+
+        calib_dict['t_cr2cl'] = -calib_dict['t_cl2cr']  # right camera to left camera
+        calib_dict['t_cr2rad'] = calib_dict['t_cr2cl'] + calib_dict['t_cl2rad']  # right camera to radar
+        calib_dict['t_cr2lid'] = calib_dict['t_cr2cl'] + calib_dict['t_cl2lid']  # right camera to lidar
+
+        calib_dict['t_rad2cl'] = -calib_dict['t_cl2rad']  # radar to left camera
+        calib_dict['t_rad2cr'] = -calib_dict['t_cr2rad']  # radar to right camera
+        calib_dict['t_rad2lid'] = calib_dict['t_rad2cl'] + calib_dict['cl2lid']  # radar to lidar
+
+        calib_dict['t_lid2cl'] = -calib_dict['t_cl2lid']  # lidar to left camera
+        calib_dict['t_lid2cr'] = -calib_dict['t_cr2lid']  # lidar to right camera
+        calib_dict['t_lid2rad'] = -calib_dict['t_rad2lid']  # lidar to radar
+
+        return calib_dict
 
 
 class ObjectConfig:
