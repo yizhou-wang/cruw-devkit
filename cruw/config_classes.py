@@ -98,7 +98,7 @@ class SensorConfig:
 
         calib_dict['t_rad2cl'] = -calib_dict['t_cl2rad']  # radar to left camera
         calib_dict['t_rad2cr'] = -calib_dict['t_cr2rad']  # radar to right camera
-        calib_dict['t_rad2lid'] = calib_dict['t_rad2cl'] + calib_dict['cl2lid']  # radar to lidar
+        calib_dict['t_rad2lid'] = calib_dict['t_rad2cl'] + calib_dict['t_cl2lid']  # radar to lidar
 
         calib_dict['t_lid2cl'] = -calib_dict['t_cl2lid']  # lidar to left camera
         calib_dict['t_lid2cr'] = -calib_dict['t_cr2lid']  # lidar to right camera
