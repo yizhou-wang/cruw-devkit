@@ -1,6 +1,7 @@
 import math
 
 from cruw.mapping.object_types import get_class_id
+from cruw.mapping import cart2pol_ramap
 
 
 def read_gt_txt(txt_path, n_frame, dataset):
@@ -98,11 +99,12 @@ def read_sub_txt(txt_path, n_frame, dataset):
     return dts
 
 
-def read_rodnet_res(filename, n_frame, dataset):
+def read_rodnet_res(filename, n_frame, dataset, det_thres=0., is_cart=False):
     n_class = dataset.object_cfg.n_class
     classes = dataset.object_cfg.classes
     rng_grid = dataset.range_grid
     agl_grid = dataset.angle_grid
+    x_grid, z_grid = dataset.xz_grid
 
     with open(filename, 'r') as df:
         data = df.readlines()
@@ -120,8 +122,15 @@ def read_rodnet_res(filename, n_frame, dataset):
             conf = float(conf)
             if conf > 1:
                 conf = 1
-            rng = rng_grid[ridx]
-            agl = agl_grid[aidx]
+            if conf < det_thres:
+                continue
+            if is_cart:
+                x = x_grid[aidx]
+                z = z_grid[ridx]
+                rng, agl = cart2pol_ramap(x, z)
+            else:
+                rng = rng_grid[ridx]
+                agl = agl_grid[aidx]
             if rng > 25 or rng < 1:
                 continue
             if agl > math.radians(60) or agl < math.radians(-60):
