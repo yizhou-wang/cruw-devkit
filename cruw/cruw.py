@@ -67,7 +67,10 @@ class CRUW:
         # cam_0_calib_yaml = os.path.join(self.data_root, 'calib', cfg.calib_cfg['cam_calib_name'], 'left.yaml')
         # cam_1_calib_yaml = os.path.join(self.data_root, 'calib', cfg.calib_cfg['cam_calib_name'], 'right.yaml')
         # cfg.load_cam_calib(cam_0_calib_yaml, cam_1_calib_yaml)
-        cfg.load_cam_calibs(self.data_root, cfg.calib_cfg['cam_calib_paths'])
+        if cfg.dataset == 'CRUW2022' or cfg.dataset == 'CRUW2022_3DDet':
+            cfg.load_cam_calibs_cruw2022(cfg.calib_cfg['cam_calib_paths'])
+        else:
+            cfg.load_cam_calibs(self.data_root, cfg.calib_cfg['cam_calib_paths'])
         if not cfg.calib_cfg['cam_calib']['load_success']:
             print('warning: loading calibration data failed')
 

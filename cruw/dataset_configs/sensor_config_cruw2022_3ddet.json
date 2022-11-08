@@ -35,7 +35,12 @@
     "z_max": 30.0
   },
   "calib_cfg": {
-    "cam_calib_paths": {},
+    "cam_calib_paths": {
+      "calib_root": "/mnt/nas_cruw/cruw_left_calibs",
+      "json_paths": [
+        "calib/camera/left.json"
+      ]
+    },
     "t_cl2cr": [
       0.60,
       0.00,

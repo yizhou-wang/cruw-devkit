@@ -18,3 +18,17 @@ def parse_cam_matrices(data):
     P = np.reshape(P, (projection_matrix['rows'], projection_matrix['cols']))
 
     return K, D, R, P
+
+
+def parse_cam_matrices_cruw2022(data):
+    calib_dict = {}
+    intrin = data['intrinsic']
+    intrin = np.array(intrin)
+    intrin = np.reshape(intrin, (3, 4))
+    intrin = intrin[:3, :3]
+    extrin = data['extrinsic']
+    extrin = np.array(extrin)
+    extrin = np.reshape(extrin, (4, 4))
+    calib_dict['intrinsic'] = intrin
+    calib_dict['extrinsic'] = extrin
+    return calib_dict

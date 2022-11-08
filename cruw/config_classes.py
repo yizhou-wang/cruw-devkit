@@ -1,8 +1,9 @@
 import os
 import yaml
+import json
 import numpy as np
 
-from cruw.utils.parse_cam_calib import parse_cam_matrices
+from cruw.utils.parse_cam_calib import parse_cam_matrices, parse_cam_matrices_cruw2022
 
 
 class SensorConfig:
@@ -83,6 +84,33 @@ class SensorConfig:
                         self.calib_cfg['cam_calib'][date]['cam_1']['distortion_coefficients'] = D
                         self.calib_cfg['cam_calib'][date]['cam_1']['rectification_matrix'] = R
                         self.calib_cfg['cam_calib'][date]['cam_1']['projection_matrix'] = P
+                else:
+                    self.calib_cfg['cam_calib']['load_success'] = False
+
+    def load_cam_calibs_cruw2022(self, cam_calib_paths):
+        self.calib_cfg['cam_calib'] = {}
+        self.calib_cfg['cam_calib']['load_success'] = True
+
+        seqs = os.listdir(cam_calib_paths['calib_root'])
+        seqs.sort()
+        for seq in seqs:
+            self.calib_cfg['cam_calib'][seq] = {}
+            n_paths = len(cam_calib_paths['json_paths'])
+            calib_path = os.path.join(cam_calib_paths['calib_root'], seq, cam_calib_paths['json_paths'][0])
+            if os.path.exists(calib_path):
+                with open(calib_path, "r") as stream:
+                    data = json.load(stream)
+                    calib_dict = parse_cam_matrices_cruw2022(data)
+                    self.calib_cfg['cam_calib'][seq]['left'] = calib_dict
+            else:
+                self.calib_cfg['cam_calib']['load_success'] = False
+            if n_paths == 2:
+                calib_path = os.path.join(cam_calib_paths['calib_root'], seq, cam_calib_paths['json_paths'][1])
+                if os.path.exists(calib_path):
+                    with open(calib_path, "r") as stream:
+                        data = json.load(stream)
+                        calib_dict = parse_cam_matrices_cruw2022(data)
+                        self.calib_cfg['cam_calib'][seq]['right'] = calib_dict
                 else:
                     self.calib_cfg['cam_calib']['load_success'] = False
 
